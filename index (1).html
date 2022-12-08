@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            background-image: url("https://docs.google.com/uc?id=1N8avwvUXAGR5aPSUhVbAT5bir4tY9ztm");
+            background-size: cover;
+        }
+        canvas{
+            background-image: url("https://docs.google.com/uc?id=1kmT5R5MaRBD9cXcrAc6UtSgCslJLnvZT");
+            border: ridge brown 10px;
+        }
+    </style>
+</head>
+<body onload="cargarImagenes()">
+   <canvas id="lienzo" width="700" height="500"></canvas>
+   <script>
+    canvas = document.getElementById("lienzo");
+    ctx = canvas.getContext("2d");
+    function cargarImagenes(){
+        fondo = new Image();
+        fondo.src = "https://docs.google.com/uc?id=1kmT5R5MaRBD9cXcrAc6UtSgCslJLnvZT";
+        fondo.onload = dibujarFondo;
+        
+        //https://docs.google.com/uc?id=11MkVDY9DGh6OPAMrn4kaCswwZx4WI87K
+       robot = new Image()
+      robot.src = "https://docs.google.com/uc?id=11MkVDY9DGh6OPAMrn4kaCswwZx4WI87K";
+      robot.onload = dibujarRobot;
+    }
+     var X = 10;
+     var Y = 10;
+      function dibujarRobot(){
+        ctx.drawImage(robot,X,Y,100,90);
+    }
+     function moverRobot(e){
+       var tecla = e.keyCode;
+       if(tecla == 37){
+         X = X - 10;
+       }
+       if(tecla == 38){
+         Y = Y - 10;
+       }
+       if(tecla == 39){
+         X = X + 10;
+       }
+       if(tecla == 40){
+         Y = Y + 10;
+       }
+       bordes();
+       dibujarFondo();
+       dibujarRobot();
+     }
+     window.addEventListener("keydown",moverRobot);
+    function bordes(){
+      if(X < 0){
+        X = canvas.width;
+      }
+       if(X > canvas.width){
+        X = 0;
+      }
+      if(Y < 0){
+        Y = canvas.height;
+      }
+      if(Y > canvas.height){
+        Y = 0;
+      }
+    }
+    function dibujarFondo(){
+        ctx.drawImage(fondo,0,0);
+    }
+   </script>
+</body>
+</html>
